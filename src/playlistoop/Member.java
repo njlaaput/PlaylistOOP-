@@ -18,7 +18,9 @@ public class Member extends User {
         System.out.println("=== DAFTAR LAGU ===");
 
         for (Lagu lagu : daftarLagu) {
-            lagu.tampilkanInfo();
+            if (lagu != null) {
+                lagu.tampilkanInfo();
+            }
         }
     }
 
@@ -29,7 +31,7 @@ public class Member extends User {
         System.out.println("=== HASIL PENCARIAN ===");
 
         for (Lagu lagu : daftarLagu) {
-            if (lagu.getJudul().toLowerCase().contains(keyword.toLowerCase())) {
+            if (lagu != null && lagu.getJudul().toLowerCase().contains(keyword.toLowerCase())) {
                 lagu.tampilkanInfo();
                 ditemukan = true;
             }
@@ -38,5 +40,18 @@ public class Member extends User {
         if (!ditemukan) {
             System.out.println("Lagu dengan judul \"" + keyword + "\" tidak ditemukan.");
         }
+    }
+
+    // Menghitung rata-rata durasi lagu dalam playlist
+    public double hitungRataRataDurasi(Lagu[] daftarLagu) {
+        double total = 0;
+        int jumlah = 0;
+        for (Lagu lagu : daftarLagu) {
+            if (lagu != null) {
+                total += lagu.getDurasi();
+                jumlah++;
+            }
+        }
+        return jumlah == 0 ? 0 : total / jumlah;
     }
 }

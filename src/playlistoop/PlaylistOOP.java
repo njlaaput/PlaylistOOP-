@@ -2,7 +2,22 @@ package playlistoop;
 
 public class PlaylistOOP {
     public static void main(String[] args) {
-        // nanti dipakai buat testing gabungan semua class
+        Lagu[] daftarLagu = new Lagu[10];
+
+        Admin admin = new Admin("Bonari", "A01");
+        Member member = new Member("Ugo", "M01");
+
+        // Polymorphism: method sama, hasil beda tergantung objek
+        admin.tampilkanAkses();
+        member.tampilkanAkses();
+
+        admin.tambahLagu(daftarLagu, new Lagu("Judul A", "Artis A", 3.5));
+        admin.tambahLagu(daftarLagu, new Lagu("Judul B", "Artis B", 4.2));
+
+        admin.lihatDaftarLagu(daftarLagu);
+        member.cariLagu(daftarLagu, "Judul A");
+
+        System.out.println("Rata-rata durasi: " + member.hitungRataRataDurasi(daftarLagu));
     }
 }
 
